@@ -1,17 +1,3 @@
-import data from './data';
-
-export const getData = async() => {
-  // const res = await fetch('./data.json',{
-  //   headers : { 
-  //     'Content-Type': 'application/json',
-  //     'Accept': 'application/json'
-  //    }
-  // });
-  // console.log(res);
-  // const result = await res.json();
-  // return result;
-}
-
 export const getAllFilter = (empData) => {
   let status = [];
   let priority = [];
