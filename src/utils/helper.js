@@ -2,38 +2,44 @@ export const getAllFilter = (empData) => {
   let status = [];
   let priority = [];
   let type = [];
-  empData.records.forEach((element) => {
-    if(!status.includes(element.status)){
-      status.push(element.status);
-    }
-    if(!priority.includes(element.priority)){
-      priority.push(element.priority);
-    }
-    if(!type.includes(element.issue_type)){
-      type.push(element.issue_type);
-    }
-  });
+  if(empData.records && empData.records.length > 0) {
+    empData?.records.forEach((element) => {
+      if(!status.includes(element.status)){
+        status.push(element.status);
+      }
+      if(!priority.includes(element.priority)){
+        priority.push(element.priority);
+      }
+      if(!type.includes(element.issue_type)){
+        type.push(element.issue_type);
+      }
+    });
+  }
   return { status, priority, type};
 }
 
 export const getAllUsers = (empData) => {
   let employee = {};
-  empData.records.forEach((element) => {
-    if(!Object.keys(employee).includes(element.assignee)) {
-      employee[element.assignee] = {};
-      employee[element.assignee]['totalTicket'] = 1;
-    } else {
-      employee[element.assignee]['totalTicket'] += 1;
-    }
-  });
+  if(empData.records && empData.records.length > 0) {
+    empData.records.forEach((element) => {
+      if(!Object.keys(employee).includes(element.assignee)) {
+        employee[element.assignee] = {};
+        employee[element.assignee]['totalTicket'] = 1;
+      } else {
+        employee[element.assignee]['totalTicket'] += 1;
+      }
+    });
+  } 
   return employee;
 }
 
 export const getTotalTickets = (empData) => {
   let totalTicket = [];
-  Object.keys(empData).forEach((element) => {
-    totalTicket.push(empData[element].totalTicket);
-  });
+  if(Object.keys(empData).length > 0) {
+    Object.keys(empData).forEach((element) => {
+      totalTicket.push(empData[element].totalTicket);
+    });
+  }
   return totalTicket;
 }
 
